@@ -1,0 +1,5 @@
+{
+  "name": "ts-dead-exports-reporting",
+  "private": true,
+  "type": "module"
+}

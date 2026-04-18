@@ -1,0 +1,40 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="630" fill="#071119"/>
+  <rect x="34" y="34" width="1132" height="562" rx="40" fill="url(#panel)" stroke="rgba(255,255,255,0.12)"/>
+  <g opacity="0.7">
+    <path d="M96 468C226 302 373 223 543 223C719 223 852 294 961 423" stroke="#FFD166" stroke-width="6" stroke-linecap="round"/>
+    <path d="M82 380C214 202 367 116 548 116C731 116 900 203 1024 360" stroke="#FFD166" stroke-opacity="0.66" stroke-width="6" stroke-linecap="round"/>
+    <path d="M74 298C214 104 381 10 564 10C759 10 920 104 1049 278" stroke="#FFD166" stroke-opacity="0.32" stroke-width="6" stroke-linecap="round"/>
+  </g>
+  <g>
+    <path d="M164 468L303 336L430 380L618 190L815 250L972 166" stroke="#7DCFFF" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="164" cy="468" r="18" fill="#7DCFFF"/>
+    <circle cx="303" cy="336" r="18" fill="#7DCFFF"/>
+    <circle cx="430" cy="380" r="18" fill="#FFD166"/>
+    <circle cx="618" cy="190" r="24" fill="#77E0B5"/>
+    <circle cx="815" cy="250" r="18" fill="#7DCFFF"/>
+    <circle cx="972" cy="166" r="18" fill="#FFD166"/>
+  </g>
+  <g>
+    <rect x="88" y="82" width="152" height="152" rx="34" fill="#08121A"/>
+    <path d="M112 191C128 168 146 158 166 158C187 158 203 167 216 185" stroke="#FFD166" stroke-width="4" stroke-linecap="round"/>
+    <path d="M108 172C124 149 142 138 164 138C186 138 206 149 221 170" stroke="#FFD166" stroke-opacity="0.72" stroke-width="4" stroke-linecap="round"/>
+    <path d="M106 152C123 126 143 113 165 113C190 113 210 126 225 149" stroke="#FFD166" stroke-opacity="0.38" stroke-width="4" stroke-linecap="round"/>
+    <path d="M122 201L142 181L160 190L186 146L206 165" stroke="#7DCFFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="122" cy="201" r="7" fill="#7DCFFF"/>
+    <circle cx="142" cy="181" r="7" fill="#7DCFFF"/>
+    <circle cx="160" cy="190" r="7" fill="#FFD166"/>
+    <circle cx="186" cy="146" r="9" fill="#77E0B5"/>
+    <circle cx="206" cy="165" r="7" fill="#7DCFFF"/>
+  </g>
+  <text x="88" y="320" fill="#FFD166" font-family="Menlo, monospace" font-size="26" letter-spacing="6">BOUNDARY ATLAS</text>
+  <text x="88" y="404" fill="#F5F7FB" font-family="Avenir Next, Segoe UI, sans-serif" font-size="78" font-weight="700">Architecture radar</text>
+  <text x="88" y="486" fill="#F5F7FB" font-family="Avenir Next, Segoe UI, sans-serif" font-size="78" font-weight="700">for TypeScript codebases</text>
+  <text x="88" y="548" fill="rgba(245,247,251,0.72)" font-family="Avenir Next, Segoe UI, sans-serif" font-size="30">Cycles, deep imports, dead exports, hotspots, and git drift. Local-first. Evidence-backed.</text>
+  <defs>
+    <linearGradient id="panel" x1="600" y1="34" x2="600" y2="596" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0C1720"/>
+      <stop offset="1" stop-color="#09131B"/>
+    </linearGradient>
+  </defs>
+</svg>

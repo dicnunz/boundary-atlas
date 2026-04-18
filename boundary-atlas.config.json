@@ -1,0 +1,39 @@
+{
+  "exclude": [
+    "**/*.d.ts",
+    "**/node_modules/**",
+    "**/.git/**",
+    "**/dist/**",
+    "**/coverage/**",
+    "fixtures/**",
+    "scripts/**",
+    "e2e/**",
+    "docs/**"
+  ],
+  "publicEntrypoints": [
+    "packages/*/src/index.ts",
+    "packages/*/src/index.js",
+    "apps/web/src/main.tsx",
+    "**/index.ts",
+    "**/index.tsx",
+    "**/index.js",
+    "**/index.jsx"
+  ],
+  "boundaries": [
+    {
+      "name": "core-self",
+      "from": ["packages/core/src/**"],
+      "allow": ["packages/core/src/**"]
+    },
+    {
+      "name": "cli-to-core",
+      "from": ["packages/cli/src/**"],
+      "allow": ["packages/cli/src/**", "packages/core/src/**"]
+    },
+    {
+      "name": "web-island",
+      "from": ["apps/web/src/**"],
+      "allow": ["apps/web/src/**"]
+    }
+  ]
+}

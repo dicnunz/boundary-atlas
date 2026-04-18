@@ -1,0 +1,16 @@
+{
+  "name": "boundary-atlas",
+  "version": "0.1.0",
+  "type": "module",
+  "bin": {
+    "boundary-atlas": "./dist/index.js"
+  },
+  "scripts": {
+    "build": "rm -rf dist && tsc -p tsconfig.json",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@boundary-atlas/core": "0.1.0",
+    "commander": "^13.1.0"
+  }
+}

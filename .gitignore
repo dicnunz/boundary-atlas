@@ -1,0 +1,9 @@
+node_modules
+dist
+coverage
+.DS_Store
+output/
+playwright-report
+test-results
+docs/generated/self
+docs/generated/fixtures

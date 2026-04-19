@@ -1,7 +1,7 @@
 # Boundary Atlas: ts-cycle-dashboard
 
-- Generated: 2026-04-18T20:31:18.610Z
-- Root: /Users/nicdunz/Documents/Codex/2026-04-18-build-and-ship-a-polished-local-2/fixtures/ts-cycle-dashboard
+- Generated: 2026-04-19T02:41:54.604Z
+- Root: /Users/nicdunz/Documents/Codex/2026-04-18-go-through-my-github-and-decide/repo_audit/boundary-atlas/fixtures/ts-cycle-dashboard
 
 ## Summary
 
@@ -15,6 +15,12 @@
 - Boundary violations: 0
 - Cross-feature dependencies: 2
 - Hotspots: 0
+
+## What stands out
+
+- High-severity findings: 1
+- Active detectors: Cycles (2), Cross-feature dependencies (2), Dead exports (1)
+- First issue to inspect: file cycle across 4 nodes
 
 ## Findings
 

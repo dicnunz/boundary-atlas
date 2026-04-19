@@ -1,10 +1,10 @@
 {
   "kind": "analysis",
   "version": "1",
-  "generatedAt": "2026-04-18T20:31:18.610Z",
+  "generatedAt": "2026-04-19T02:41:54.604Z",
   "project": {
     "label": "ts-cycle-dashboard",
-    "rootPath": "/Users/nicdunz/Documents/Codex/2026-04-18-build-and-ship-a-polished-local-2/fixtures/ts-cycle-dashboard",
+    "rootPath": "/Users/nicdunz/Documents/Codex/2026-04-18-go-through-my-github-and-decide/repo_audit/boundary-atlas/fixtures/ts-cycle-dashboard",
     "repoName": "ts-cycle-dashboard"
   },
   "summary": {

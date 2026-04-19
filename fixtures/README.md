@@ -2,12 +2,12 @@
 
 Each fixture is a standalone minimal TS or JS repo. The expected findings are grounded in source structure only. No fixture depends on a custom Boundary Atlas config file or a fabricated report payload.
 
-| Fixture | Tech | Detector target | Key evidence |
-| --- | --- | --- | --- |
-| `ts-cycle-dashboard` | TypeScript | cycle detection | `account/index.ts -> load-account-summary.ts -> billing/index.ts -> calculate-outstanding-balance.ts -> account/index.ts` |
-| `js-deep-import-storefront` | JavaScript | deep import detection | feature files import `shared/ui/internal/*` and `shared/data/internal/*` instead of public entrypoints |
-| `ts-dead-exports-reporting` | TypeScript | dead export detection | `formatters.ts` exports live and dead symbols side by side, but only `formatFinding` is referenced |
-| `ts-cross-feature-portal` | TypeScript | risky cross-feature dependency detection | `checkout/submit-order.ts` fans out to `auth`, `finance`, `marketing`, and `support` feature APIs |
+| Fixture | Tech | Detector target | Key evidence | Sample report |
+| --- | --- | --- | --- | --- |
+| `ts-cycle-dashboard` | TypeScript | cycle detection | `account/index.ts -> load-account-summary.ts -> billing/index.ts -> calculate-outstanding-balance.ts -> account/index.ts` | [`report.md`](../docs/samples/fixtures/ts-cycle-dashboard/report.md) |
+| `js-deep-import-storefront` | JavaScript | deep import detection | feature files import `shared/ui/internal/*` and `shared/data/internal/*` instead of public entrypoints | [`report.md`](../docs/samples/fixtures/js-deep-import-storefront/report.md) |
+| `ts-dead-exports-reporting` | TypeScript | dead export detection | `formatters.ts` exports live and dead symbols side by side, but only `formatFinding` is referenced | [`report.md`](../docs/samples/fixtures/ts-dead-exports-reporting/report.md) |
+| `ts-cross-feature-portal` | TypeScript | risky cross-feature dependency detection | `checkout/submit-order.ts` fans out to `auth`, `finance`, `marketing`, and `support` feature APIs | [`report.md`](../docs/samples/fixtures/ts-cross-feature-portal/report.md) |
 
 ## ts-cycle-dashboard
 

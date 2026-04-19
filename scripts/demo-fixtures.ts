@@ -1,3 +1,4 @@
+import { copyFile } from 'node:fs/promises';
 import path from 'node:path';
 import { analyzeRepository } from '../packages/core/src/index.ts';
 import { REPO_ROOT, writeReportArtifacts } from './report-export.ts';
@@ -16,3 +17,10 @@ for (const fixture of FIXTURES) {
   await writeReportArtifacts(report, outputRoot);
   console.log(`exported ${fixture} -> ${path.relative(REPO_ROOT, outputRoot)}`);
 }
+
+await copyFile(
+  path.join(REPO_ROOT, 'docs', 'samples', 'fixtures', 'ts-cross-feature-portal', 'report.json'),
+  path.join(REPO_ROOT, 'apps', 'web', 'public', 'demo-report.json')
+);
+
+console.log('refreshed apps/web/public/demo-report.json from ts-cross-feature-portal');

@@ -19,6 +19,7 @@
     "e2e": "playwright test",
     "demo:fixtures": "tsx scripts/demo-fixtures.ts",
     "demo:self": "tsx scripts/demo-self.ts",
+    "docs:assets": "tsx scripts/capture-web-assets.ts",
     "preview:web": "npm run preview -w @boundary-atlas/web -- --host 127.0.0.1 --port 4173"
   },
   "devDependencies": {

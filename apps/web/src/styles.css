@@ -94,20 +94,29 @@ input {
 }
 
 .atlas-header h1 {
-  max-width: 18ch;
-  font-size: clamp(2.6rem, 6vw, 4.8rem);
+  max-width: 16ch;
+  font-size: clamp(2.6rem, 6vw, 4.6rem);
 }
 
-.atlas-copy {
-  max-width: 52rem;
-  margin: 0.9rem 0 0;
-  color: var(--text-1);
-  font-size: 1.05rem;
+.atlas-copy,
+.atlas-subcopy {
+  max-width: 58rem;
+  margin: 0;
   line-height: 1.65;
 }
 
+.atlas-copy {
+  color: var(--text-0);
+  font-size: 1.05rem;
+}
+
+.atlas-subcopy {
+  color: var(--text-1);
+  font-size: 0.98rem;
+}
+
 .atlas-actions {
-  min-width: 16rem;
+  min-width: 18rem;
   display: grid;
   gap: 0.75rem;
   align-content: start;
@@ -140,19 +149,28 @@ input {
 }
 
 .status-pill {
+  justify-content: flex-start;
   color: var(--text-1);
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .summary-strip {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
   gap: 0.9rem;
 }
 
 .summary-card {
   padding: 1rem 1.1rem;
   border-radius: 1.4rem;
+}
+
+.summary-card.is-signal {
+  background: linear-gradient(180deg, rgba(125, 207, 255, 0.12), rgba(11, 22, 31, 0.74));
+}
+
+.summary-card.is-alert {
+  background: linear-gradient(180deg, rgba(255, 139, 139, 0.18), rgba(11, 22, 31, 0.74));
 }
 
 .summary-card span {
@@ -219,7 +237,7 @@ input {
 }
 
 .search-input {
-  min-width: 15rem;
+  min-width: 17rem;
   border: 1px solid rgba(255, 255, 255, 0.1);
   background: rgba(8, 16, 24, 0.72);
   color: var(--text-0);
@@ -270,17 +288,20 @@ input {
   color: var(--accent-0);
 }
 
+.overview-list,
 .evidence-list,
 .finding-list {
   display: grid;
   gap: 0.7rem;
 }
 
+.overview-list,
 .evidence-list {
   padding: 0;
   list-style: none;
 }
 
+.overview-list li,
 .evidence-list li {
   display: grid;
   gap: 0.18rem;
@@ -395,10 +416,6 @@ input {
     grid-template-columns: 1fr;
   }
 
-  .summary-strip {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
   .atlas-header {
     flex-direction: column;
   }
@@ -407,10 +424,6 @@ input {
 @media (max-width: 700px) {
   .atlas-shell {
     padding: 0.8rem;
-  }
-
-  .summary-strip {
-    grid-template-columns: 1fr;
   }
 
   .control-row {

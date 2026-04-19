@@ -1,4 +1,12 @@
-import { startTransition, useDeferredValue, useEffect, useState, type ChangeEvent } from 'react';
+import {
+  startTransition,
+  useCallback,
+  useDeferredValue,
+  useEffect,
+  useMemo,
+  useState,
+  type ChangeEvent
+} from 'react';
 import ForceGraph2D from 'react-force-graph-2d';
 import type {
   BoundaryAtlasFinding,
@@ -27,7 +35,26 @@ interface GraphEdgeDatum extends BoundaryAtlasGraphEdge {
   width: number;
 }
 
+interface SummaryCard {
+  label: string;
+  value: string;
+  emphasis?: 'signal' | 'alert';
+}
+
 const GRANULARITIES: BoundaryAtlasGranularity[] = ['package', 'folder', 'file'];
+const FINDING_TYPE_WEIGHT: Record<BoundaryAtlasFinding['type'], number> = {
+  'boundary-violation': 0,
+  'cross-feature': 1,
+  cycle: 2,
+  'deep-import': 3,
+  'dead-export': 4,
+  hotspot: 5
+};
+const SEVERITY_WEIGHT: Record<BoundaryAtlasFinding['severity'], number> = {
+  high: 0,
+  warn: 1,
+  info: 2
+};
 
 function hashColor(value: string): string {
   let hash = 0;
@@ -60,22 +87,77 @@ function matchesSearch(value: string, query: string): boolean {
   return value.toLowerCase().includes(query.toLowerCase());
 }
 
+function prioritizeFindings(findings: BoundaryAtlasFinding[]): BoundaryAtlasFinding[] {
+  return findings.slice().sort((left, right) => {
+    const severityDelta = SEVERITY_WEIGHT[left.severity] - SEVERITY_WEIGHT[right.severity];
+    if (severityDelta !== 0) {
+      return severityDelta;
+    }
+
+    const typeDelta = FINDING_TYPE_WEIGHT[left.type] - FINDING_TYPE_WEIGHT[right.type];
+    if (typeDelta !== 0) {
+      return typeDelta;
+    }
+
+    return left.title.localeCompare(right.title);
+  });
+}
+
+function pickFeaturedFinding(report: BoundaryAtlasReport): BoundaryAtlasFinding | null {
+  return prioritizeFindings(report.findings)[0] ?? null;
+}
+
+function pickInitialGranularity(
+  report: BoundaryAtlasReport,
+  featuredFinding: BoundaryAtlasFinding | null
+): BoundaryAtlasGranularity {
+  const featuredNodeId = featuredFinding?.nodeIds[0];
+  if (featuredNodeId) {
+    return inferGranularity(featuredNodeId);
+  }
+
+  if (report.graphs.file.nodes.length > 1 && report.graphs.file.nodes.length <= 48) {
+    return 'file';
+  }
+
+  if (report.graphs.folder.nodes.length > 1) {
+    return 'folder';
+  }
+
+  return 'package';
+}
+
 export function App() {
   const [report, setReport] = useState<BoundaryAtlasReport | null>(null);
   const [status, setStatus] = useState('Loading demo report...');
-  const [granularity, setGranularity] = useState<BoundaryAtlasGranularity>('package');
+  const [granularity, setGranularity] = useState<BoundaryAtlasGranularity>('file');
   const [search, setSearch] = useState('');
   const [selectedNodeId, setSelectedNodeId] = useState<string | null>(null);
   const [selectedFindingId, setSelectedFindingId] = useState<string | null>(null);
   const deferredSearch = useDeferredValue(search);
+
+  const applyReport = useCallback((nextReport: BoundaryAtlasReport, nextStatus: string) => {
+    const featuredFinding = pickFeaturedFinding(nextReport);
+    const featuredNodeId = featuredFinding?.nodeIds[0] ?? null;
+
+    startTransition(() => {
+      setReport(nextReport);
+      setStatus(nextStatus);
+      setSearch('');
+      setSelectedFindingId(featuredFinding?.id ?? null);
+      setSelectedNodeId(featuredNodeId);
+      setGranularity(pickInitialGranularity(nextReport, featuredFinding));
+    });
+  }, []);
 
   useEffect(() => {
     let cancelled = false;
 
     const loadReport = async () => {
       if (window.__BOUNDARY_ATLAS_EMBEDDED_REPORT__) {
-        setReport(window.__BOUNDARY_ATLAS_EMBEDDED_REPORT__);
-        setStatus('Loaded embedded report.');
+        if (!cancelled) {
+          applyReport(window.__BOUNDARY_ATLAS_EMBEDDED_REPORT__, 'Loaded embedded report.');
+        }
         return;
       }
 
@@ -87,8 +169,7 @@ export function App() {
 
         const nextReport = (await response.json()) as BoundaryAtlasReport;
         if (!cancelled) {
-          setReport(nextReport);
-          setStatus('Loaded demo report.');
+          applyReport(nextReport, 'Loaded demo report.');
         }
       } catch (error) {
         if (!cancelled) {
@@ -102,30 +183,42 @@ export function App() {
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [applyReport]);
 
+  const prioritizedFindings = useMemo(() => prioritizeFindings(report?.findings ?? []), [report]);
   const activeGraph = report?.graphs[granularity];
-  const selectedFinding =
-    report?.findings.find((finding) => finding.id === selectedFindingId) ?? null;
-  const selectedNode =
-    activeGraph?.nodes.find((node) => node.id === selectedNodeId) ?? null;
+  const selectedFinding = prioritizedFindings.find((finding) => finding.id === selectedFindingId) ?? null;
+  const selectedNode = activeGraph?.nodes.find((node) => node.id === selectedNodeId) ?? null;
+  const highSeverityCount = report?.findings.filter((finding) => finding.severity === 'high').length ?? 0;
+  const detectorCards = report
+    ? [
+        { label: 'Cycles', count: report.summary.cycleCount },
+        { label: 'Deep imports', count: report.summary.deepImportCount },
+        { label: 'Boundary breaks', count: report.summary.boundaryViolationCount },
+        { label: 'Cross-feature', count: report.summary.crossFeatureCount },
+        { label: 'Dead exports', count: report.summary.deadExportCount },
+        { label: 'Hotspots', count: report.summary.hotspotCount }
+      ]
+        .filter((entry) => entry.count > 0)
+        .sort((left, right) => right.count - left.count || left.label.localeCompare(right.label))
+        .slice(0, 2)
+    : [];
 
-  const filteredFindings =
-    report?.findings.filter((finding) => {
-      if (deferredSearch.trim() === '') {
-        return true;
-      }
+  const filteredFindings = prioritizedFindings.filter((finding) => {
+    if (deferredSearch.trim() === '') {
+      return true;
+    }
 
-      const haystack = [
-        finding.title,
-        finding.summary,
-        finding.type,
-        ...finding.evidence.map((item) => item.label),
-        ...finding.evidence.flatMap((item) => [item.sourcePath ?? '', item.targetPath ?? ''])
-      ].join(' ');
+    const haystack = [
+      finding.title,
+      finding.summary,
+      finding.type,
+      ...finding.evidence.map((item) => item.label),
+      ...finding.evidence.flatMap((item) => [item.sourcePath ?? '', item.targetPath ?? ''])
+    ].join(' ');
 
-      return matchesSearch(haystack, deferredSearch);
-    }) ?? [];
+    return matchesSearch(haystack, deferredSearch);
+  });
 
   const selectedFindingNodes = new Set(selectedFinding?.nodeIds ?? []);
 
@@ -172,12 +265,21 @@ export function App() {
         }) satisfies GraphEdgeDatum) ?? []
   };
 
-  const summaryCards = report
+  const summaryCards: SummaryCard[] = report
     ? [
-        ['Files', String(report.summary.fileCount)],
-        ['Packages', String(report.summary.packageCount)],
-        ['Edges', String(report.summary.internalEdgeCount)],
-        ['Findings', String(report.findings.length)]
+        { label: 'Files', value: String(report.summary.fileCount) },
+        { label: 'Edges', value: String(report.summary.internalEdgeCount) },
+        { label: 'Findings', value: String(report.findings.length), emphasis: 'signal' },
+        {
+          label: 'High severity',
+          value: String(highSeverityCount),
+          ...(highSeverityCount > 0 ? { emphasis: 'alert' as const } : {})
+        },
+        ...detectorCards.map((entry) => ({
+          label: entry.label,
+          value: String(entry.count),
+          emphasis: 'signal' as const
+        }))
       ]
     : [];
 
@@ -189,12 +291,7 @@ export function App() {
 
     const text = await file.text();
     const nextReport = JSON.parse(text) as BoundaryAtlasReport;
-    startTransition(() => {
-      setReport(nextReport);
-      setSelectedFindingId(null);
-      setSelectedNodeId(null);
-      setStatus(`Loaded ${file.name}.`);
-    });
+    applyReport(nextReport, `Loaded ${file.name}.`);
   };
 
   const focusFinding = (finding: BoundaryAtlasFinding) => {
@@ -212,15 +309,18 @@ export function App() {
         <div className="hero-copy">
           <img className="atlas-mark" src="./mark.svg" alt="Boundary Atlas mark" />
           <p className="atlas-kicker">Boundary Atlas</p>
-          <h1>Architecture radar for TypeScript codebases.</h1>
+          <h1>Architecture radar for TypeScript and JavaScript repos.</h1>
           <p className="atlas-copy">
-            Interactive boundary analysis with evidence-backed cycles, deep imports,
-            hotspots, dead exports, and git drift.
+            Evidence-backed cycles, deep imports, boundary breaks, hotspots, dead exports, and git drift in an
+            offline viewer you can ship with the report.
+          </p>
+          <p className="atlas-subcopy">
+            Demo state opens a cross-feature fan-out finding first so the viewer shows the risk, not just the shell.
           </p>
         </div>
         <div className="atlas-actions">
           <label className="upload-pill">
-            Load report
+            Load report JSON
             <input type="file" accept=".json" onChange={handleFileLoad} />
           </label>
           <p className="status-pill">{status}</p>
@@ -228,10 +328,13 @@ export function App() {
       </header>
 
       <section className="summary-strip">
-        {summaryCards.map(([label, value]) => (
-          <article className="summary-card" key={label}>
-            <span>{label}</span>
-            <strong>{value}</strong>
+        {summaryCards.map((card) => (
+          <article
+            className={`summary-card${card.emphasis ? ` is-${card.emphasis}` : ''}`}
+            key={`${card.label}-${card.value}`}
+          >
+            <span>{card.label}</span>
+            <strong>{card.value}</strong>
           </article>
         ))}
       </section>
@@ -258,7 +361,7 @@ export function App() {
               </div>
               <input
                 className="search-input"
-                placeholder="Search paths, findings, packages"
+                placeholder="Search paths, findings, specifiers"
                 value={search}
                 onChange={(event) => setSearch(event.target.value)}
               />
@@ -314,9 +417,7 @@ export function App() {
 
             {selectedFinding ? (
               <div className="finding-card">
-                <span className={`severity-chip severity-${selectedFinding.severity}`}>
-                  {selectedFinding.severity}
-                </span>
+                <span className={`severity-chip severity-${selectedFinding.severity}`}>{selectedFinding.severity}</span>
                 <h3>{selectedFinding.title}</h3>
                 <p>{selectedFinding.summary}</p>
                 <p className="why-risky">{selectedFinding.whyRisky}</p>
@@ -334,6 +435,10 @@ export function App() {
                 <h3>{selectedNode.path}</h3>
                 <dl>
                   <div>
+                    <dt>Kind</dt>
+                    <dd>{selectedNode.kind}</dd>
+                  </div>
+                  <div>
                     <dt>Fan-in</dt>
                     <dd>{selectedNode.fanIn}</dd>
                   </div>
@@ -349,17 +454,28 @@ export function App() {
                     <dt>Feature</dt>
                     <dd>{selectedNode.featureRoot ?? 'n/a'}</dd>
                   </div>
+                  <div>
+                    <dt>Public entrypoint</dt>
+                    <dd>{selectedNode.isPublicEntrypoint ? 'yes' : 'no'}</dd>
+                  </div>
                 </dl>
               </div>
             ) : report ? (
               <div className="node-card">
                 <h3>{report.project.label}</h3>
-                <p>{report.findings.length} findings with graph views at file, folder, and package scope.</p>
-                {report.drift ? (
-                  <p>
-                    Drift mode comparing {report.drift.baseRef} to {report.drift.headRef}.
-                  </p>
-                ) : null}
+                <ul className="overview-list">
+                  <li>{report.findings.length} prioritized findings across file, folder, and package graphs.</li>
+                  <li>
+                    {highSeverityCount > 0
+                      ? `${highSeverityCount} high-severity finding${highSeverityCount === 1 ? '' : 's'} should be triaged first.`
+                      : 'No high-severity findings in this report.'}
+                  </li>
+                  <li>
+                    {report.drift
+                      ? `Diff report comparing ${report.drift.baseRef} to ${report.drift.headRef}.`
+                      : 'Select a finding to jump from the summary into the exact edges behind it.'}
+                  </li>
+                </ul>
               </div>
             ) : null}
           </article>

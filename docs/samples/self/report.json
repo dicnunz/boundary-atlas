@@ -1,12 +1,12 @@
 {
   "kind": "analysis",
   "version": "1",
-  "generatedAt": "2026-04-18T20:31:34.774Z",
+  "generatedAt": "2026-04-19T02:41:57.615Z",
   "project": {
     "label": "boundary-atlas",
-    "rootPath": "/Users/nicdunz/Documents/Codex/2026-04-18-build-and-ship-a-polished-local-2",
-    "repoName": "2026-04-18-build-and-ship-a-polished-local-2",
-    "configPath": "/Users/nicdunz/Documents/Codex/2026-04-18-build-and-ship-a-polished-local-2/boundary-atlas.config.json"
+    "rootPath": "/Users/nicdunz/Documents/Codex/2026-04-18-go-through-my-github-and-decide/repo_audit/boundary-atlas",
+    "repoName": "boundary-atlas",
+    "configPath": "/Users/nicdunz/Documents/Codex/2026-04-18-go-through-my-github-and-decide/repo_audit/boundary-atlas/boundary-atlas.config.json"
   },
   "summary": {
     "fileCount": 22,

@@ -1,7 +1,7 @@
 # Boundary Atlas: boundary-atlas
 
-- Generated: 2026-04-18T20:31:34.774Z
-- Root: /Users/nicdunz/Documents/Codex/2026-04-18-build-and-ship-a-polished-local-2
+- Generated: 2026-04-19T02:41:57.615Z
+- Root: /Users/nicdunz/Documents/Codex/2026-04-18-go-through-my-github-and-decide/repo_audit/boundary-atlas
 
 ## Summary
 
@@ -16,77 +16,13 @@
 - Cross-feature dependencies: 0
 - Hotspots: 10
 
+## What stands out
+
+- High-severity findings: 0
+- Active detectors: Dead exports (38), Hotspots (10)
+- First issue to inspect: Unused export basenamePath
+
 ## Findings
-
-### file hotspot: packages/core/src/analyze/analyze-repository.ts
-- Type: hotspot
-- Severity: warn
-- Summary: packages/core/src/analyze/analyze-repository.ts has fan-in 3 and fan-out 6.
-- Why risky: High fan-in means many callers depend on this node. High fan-out means this node reaches across many other areas. Either shape concentrates architectural churn.
-- Evidence: packages/core/src/analyze/analyze-repository.ts
-
-### file hotspot: packages/core/src/diff/compare-git-refs.ts
-- Type: hotspot
-- Severity: warn
-- Summary: packages/core/src/diff/compare-git-refs.ts has fan-in 2 and fan-out 3.
-- Why risky: High fan-in means many callers depend on this node. High fan-out means this node reaches across many other areas. Either shape concentrates architectural churn.
-- Evidence: packages/core/src/diff/compare-git-refs.ts
-
-### file hotspot: packages/core/src/graph/workspace.ts
-- Type: hotspot
-- Severity: warn
-- Summary: packages/core/src/graph/workspace.ts has fan-in 3 and fan-out 2.
-- Why risky: High fan-in means many callers depend on this node. High fan-out means this node reaches across many other areas. Either shape concentrates architectural churn.
-- Evidence: packages/core/src/graph/workspace.ts
-
-### file hotspot: packages/core/src/index.ts
-- Type: hotspot
-- Severity: warn
-- Summary: packages/core/src/index.ts has fan-in 0 and fan-out 5.
-- Why risky: High fan-in means many callers depend on this node. High fan-out means this node reaches across many other areas. Either shape concentrates architectural churn.
-- Evidence: packages/core/src/index.ts
-
-### file hotspot: packages/core/src/rules/findings.ts
-- Type: hotspot
-- Severity: warn
-- Summary: packages/core/src/rules/findings.ts has fan-in 1 and fan-out 3.
-- Why risky: High fan-in means many callers depend on this node. High fan-out means this node reaches across many other areas. Either shape concentrates architectural churn.
-- Evidence: packages/core/src/rules/findings.ts
-
-### file hotspot: packages/core/src/types/config.ts
-- Type: hotspot
-- Severity: warn
-- Summary: packages/core/src/types/config.ts has fan-in 6 and fan-out 0.
-- Why risky: High fan-in means many callers depend on this node. High fan-out means this node reaches across many other areas. Either shape concentrates architectural churn.
-- Evidence: packages/core/src/types/config.ts
-
-### file hotspot: packages/core/src/types/report.ts
-- Type: hotspot
-- Severity: warn
-- Summary: packages/core/src/types/report.ts has fan-in 7 and fan-out 1.
-- Why risky: High fan-in means many callers depend on this node. High fan-out means this node reaches across many other areas. Either shape concentrates architectural churn.
-- Evidence: packages/core/src/types/report.ts
-
-### folder hotspot: packages/core/src
-- Type: hotspot
-- Severity: warn
-- Summary: packages/core/src has fan-in 0 and fan-out 4.
-- Why risky: High fan-in means many callers depend on this node. High fan-out means this node reaches across many other areas. Either shape concentrates architectural churn.
-- Evidence: packages/core/src
-
-### folder hotspot: packages/core/src/analyze
-- Type: hotspot
-- Severity: warn
-- Summary: packages/core/src/analyze has fan-in 2 and fan-out 3.
-- Why risky: High fan-in means many callers depend on this node. High fan-out means this node reaches across many other areas. Either shape concentrates architectural churn.
-- Evidence: packages/core/src/analyze
-
-### folder hotspot: packages/core/src/types
-- Type: hotspot
-- Severity: warn
-- Summary: packages/core/src/types has fan-in 6 and fan-out 0.
-- Why risky: High fan-in means many callers depend on this node. High fan-out means this node reaches across many other areas. Either shape concentrates architectural churn.
-- Evidence: packages/core/src/types
 
 ### Unused export basenamePath
 - Type: dead-export
@@ -353,6 +289,76 @@
 - Summary: Export `WorkspacePackage` in packages/core/src/graph/workspace.ts is not referenced internally.
 - Why risky: Unused exports widen the apparent public surface and make the module harder to maintain because callers cannot distinguish real API from stale code.
 - Evidence: packages/core/src/graph/workspace.ts:19 | No internal import or re-export references this export, and it is not part of a public entrypoint surface.
+
+### file hotspot: packages/core/src/analyze/analyze-repository.ts
+- Type: hotspot
+- Severity: warn
+- Summary: packages/core/src/analyze/analyze-repository.ts has fan-in 3 and fan-out 6.
+- Why risky: High fan-in means many callers depend on this node. High fan-out means this node reaches across many other areas. Either shape concentrates architectural churn.
+- Evidence: packages/core/src/analyze/analyze-repository.ts
+
+### file hotspot: packages/core/src/diff/compare-git-refs.ts
+- Type: hotspot
+- Severity: warn
+- Summary: packages/core/src/diff/compare-git-refs.ts has fan-in 2 and fan-out 3.
+- Why risky: High fan-in means many callers depend on this node. High fan-out means this node reaches across many other areas. Either shape concentrates architectural churn.
+- Evidence: packages/core/src/diff/compare-git-refs.ts
+
+### file hotspot: packages/core/src/graph/workspace.ts
+- Type: hotspot
+- Severity: warn
+- Summary: packages/core/src/graph/workspace.ts has fan-in 3 and fan-out 2.
+- Why risky: High fan-in means many callers depend on this node. High fan-out means this node reaches across many other areas. Either shape concentrates architectural churn.
+- Evidence: packages/core/src/graph/workspace.ts
+
+### file hotspot: packages/core/src/index.ts
+- Type: hotspot
+- Severity: warn
+- Summary: packages/core/src/index.ts has fan-in 0 and fan-out 5.
+- Why risky: High fan-in means many callers depend on this node. High fan-out means this node reaches across many other areas. Either shape concentrates architectural churn.
+- Evidence: packages/core/src/index.ts
+
+### file hotspot: packages/core/src/rules/findings.ts
+- Type: hotspot
+- Severity: warn
+- Summary: packages/core/src/rules/findings.ts has fan-in 1 and fan-out 3.
+- Why risky: High fan-in means many callers depend on this node. High fan-out means this node reaches across many other areas. Either shape concentrates architectural churn.
+- Evidence: packages/core/src/rules/findings.ts
+
+### file hotspot: packages/core/src/types/config.ts
+- Type: hotspot
+- Severity: warn
+- Summary: packages/core/src/types/config.ts has fan-in 6 and fan-out 0.
+- Why risky: High fan-in means many callers depend on this node. High fan-out means this node reaches across many other areas. Either shape concentrates architectural churn.
+- Evidence: packages/core/src/types/config.ts
+
+### file hotspot: packages/core/src/types/report.ts
+- Type: hotspot
+- Severity: warn
+- Summary: packages/core/src/types/report.ts has fan-in 7 and fan-out 1.
+- Why risky: High fan-in means many callers depend on this node. High fan-out means this node reaches across many other areas. Either shape concentrates architectural churn.
+- Evidence: packages/core/src/types/report.ts
+
+### folder hotspot: packages/core/src
+- Type: hotspot
+- Severity: warn
+- Summary: packages/core/src has fan-in 0 and fan-out 4.
+- Why risky: High fan-in means many callers depend on this node. High fan-out means this node reaches across many other areas. Either shape concentrates architectural churn.
+- Evidence: packages/core/src
+
+### folder hotspot: packages/core/src/analyze
+- Type: hotspot
+- Severity: warn
+- Summary: packages/core/src/analyze has fan-in 2 and fan-out 3.
+- Why risky: High fan-in means many callers depend on this node. High fan-out means this node reaches across many other areas. Either shape concentrates architectural churn.
+- Evidence: packages/core/src/analyze
+
+### folder hotspot: packages/core/src/types
+- Type: hotspot
+- Severity: warn
+- Summary: packages/core/src/types has fan-in 6 and fan-out 0.
+- Why risky: High fan-in means many callers depend on this node. High fan-out means this node reaches across many other areas. Either shape concentrates architectural churn.
+- Evidence: packages/core/src/types
 
 ## Hotspots
 

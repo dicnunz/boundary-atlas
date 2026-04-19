@@ -1,7 +1,7 @@
 # Boundary Atlas: ts-dead-exports-reporting
 
-- Generated: 2026-04-18T20:31:20.890Z
-- Root: /Users/nicdunz/Documents/Codex/2026-04-18-build-and-ship-a-polished-local-2/fixtures/ts-dead-exports-reporting
+- Generated: 2026-04-19T02:41:55.521Z
+- Root: /Users/nicdunz/Documents/Codex/2026-04-18-go-through-my-github-and-decide/repo_audit/boundary-atlas/fixtures/ts-dead-exports-reporting
 
 ## Summary
 
@@ -15,6 +15,12 @@
 - Boundary violations: 0
 - Cross-feature dependencies: 0
 - Hotspots: 0
+
+## What stands out
+
+- High-severity findings: 0
+- Active detectors: Dead exports (3)
+- First issue to inspect: Unused export formatLegacyRiskCallout
 
 ## Findings
 

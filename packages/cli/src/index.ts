@@ -19,6 +19,21 @@ interface OutputOptions {
   html?: string;
 }
 
+const FINDING_TYPE_WEIGHT: Record<BoundaryAtlasReport['findings'][number]['type'], number> = {
+  'boundary-violation': 0,
+  'cross-feature': 1,
+  cycle: 2,
+  'deep-import': 3,
+  'dead-export': 4,
+  hotspot: 5
+};
+
+const SEVERITY_WEIGHT: Record<BoundaryAtlasReport['findings'][number]['severity'], number> = {
+  high: 0,
+  warn: 1,
+  info: 2
+};
+
 const CURRENT_DIR = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(CURRENT_DIR, '../../..');
 const WEB_DIST_DIR = path.join(REPO_ROOT, 'apps/web/dist');
@@ -70,18 +85,53 @@ async function writeOutputs(report: BoundaryAtlasReport, options: OutputOptions)
 }
 
 function printSummary(report: BoundaryAtlasReport): void {
+  const highSeverityCount = report.findings.filter((finding) => finding.severity === 'high').length;
+  const sortedFindings = report.findings
+    .slice()
+    .sort((left, right) => {
+      const severityDelta = SEVERITY_WEIGHT[left.severity] - SEVERITY_WEIGHT[right.severity];
+      if (severityDelta !== 0) {
+        return severityDelta;
+      }
+
+      const typeDelta = FINDING_TYPE_WEIGHT[left.type] - FINDING_TYPE_WEIGHT[right.type];
+      if (typeDelta !== 0) {
+        return typeDelta;
+      }
+
+      return left.title.localeCompare(right.title);
+    });
+
+  const detectorCounts = [
+    { label: 'cycles', count: report.summary.cycleCount },
+    { label: 'deep imports', count: report.summary.deepImportCount },
+    { label: 'boundary breaks', count: report.summary.boundaryViolationCount },
+    { label: 'cross-feature edges', count: report.summary.crossFeatureCount },
+    { label: 'dead exports', count: report.summary.deadExportCount },
+    { label: 'hotspots', count: report.summary.hotspotCount }
+  ].filter((entry) => entry.count > 0);
+
   console.log(`Boundary Atlas: ${report.project.label}`);
   console.log(`Files: ${report.summary.fileCount}`);
   console.log(`Packages: ${report.summary.packageCount}`);
   console.log(`Edges: ${report.summary.internalEdgeCount}`);
   console.log(`Findings: ${report.findings.length}`);
+  console.log(`High severity: ${highSeverityCount}`);
 
-  const topFindings = report.findings.slice(0, 5);
+  if (detectorCounts.length > 0) {
+    console.log('');
+    console.log('Signals:');
+    for (const entry of detectorCounts) {
+      console.log(`- ${entry.label}: ${entry.count}`);
+    }
+  }
+
+  const topFindings = sortedFindings.slice(0, 5);
   if (topFindings.length > 0) {
     console.log('');
     console.log('Top findings:');
     for (const finding of topFindings) {
-      console.log(`- [${finding.severity}] ${finding.title}`);
+      console.log(`- [${finding.severity}][${finding.type}] ${finding.title}`);
     }
   }
 }

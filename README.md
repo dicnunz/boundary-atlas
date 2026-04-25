@@ -1,6 +1,6 @@
 # Boundary Atlas
 
-![Boundary Atlas social preview](docs/assets/social-preview.png)
+![Boundary Atlas architecture blueprint](docs/assets/generated/boundary-atlas-hero.png)
 
 Boundary Atlas is a local-first architecture radar for TypeScript and JavaScript repositories. It parses real imports with `ts-morph`, builds file, folder, and package graphs, and turns them into evidence-backed findings you can ship as JSON, Markdown, or an offline HTML viewer.
 
@@ -160,6 +160,12 @@ npm run docs:assets
 ```
 
 ## Validation
+
+```bash
+npm run verify
+```
+
+The full browser pass is available separately:
 
 ```bash
 npm run lint

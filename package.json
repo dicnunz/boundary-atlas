@@ -17,6 +17,7 @@
     "typecheck": "npm run typecheck -w @boundary-atlas/core && npm run build -w @boundary-atlas/core && npm run typecheck -w boundary-atlas && npm run typecheck -w @boundary-atlas/web",
     "test": "vitest run",
     "e2e": "playwright test",
+    "verify": "npm run lint && npm run typecheck && npm run test && npm run build && npm run demo:fixtures && npm run demo:self",
     "demo:fixtures": "tsx scripts/demo-fixtures.ts",
     "demo:self": "tsx scripts/demo-self.ts",
     "docs:assets": "tsx scripts/capture-web-assets.ts",

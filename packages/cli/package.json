@@ -1,7 +1,11 @@
 {
   "name": "boundary-atlas",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
+  "funding": {
+    "type": "custom",
+    "url": "https://nicdunz.gumroad.com/l/smrimu"
+  },
   "bin": {
     "boundary-atlas": "./dist/index.js"
   },
@@ -10,7 +14,7 @@
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "dependencies": {
-    "@boundary-atlas/core": "0.1.0",
+    "@boundary-atlas/core": "0.1.1",
     "commander": "^13.1.0"
   }
 }

@@ -37,6 +37,8 @@ const SEVERITY_WEIGHT: Record<BoundaryAtlasReport['findings'][number]['severity'
 const CURRENT_DIR = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(CURRENT_DIR, '../../..');
 const WEB_DIST_DIR = path.join(REPO_ROOT, 'apps/web/dist');
+const VERSION = '0.1.1';
+const SUPPORT_RECEIPT_URL = 'https://nicdunz.gumroad.com/l/smrimu';
 
 async function ensureParentDirectory(filePath: string): Promise<void> {
   await mkdir(path.dirname(filePath), { recursive: true });
@@ -166,7 +168,16 @@ const program = new Command();
 program
   .name('boundary-atlas')
   .description('Architecture radar for TypeScript and JavaScript repositories.')
-  .version('0.1.0');
+  .version(VERSION);
+
+program
+  .command('support')
+  .description('Show the optional support receipt link.')
+  .action(() => {
+    console.log('Support Boundary Atlas:');
+    console.log(`- Optional $5 Codex run receipt: ${SUPPORT_RECEIPT_URL}`);
+    console.log('- Use it if the architecture report saved review or refactor time.');
+  });
 
 program
   .command('analyze [target]')

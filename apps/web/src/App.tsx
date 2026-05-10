@@ -42,6 +42,7 @@ interface SummaryCard {
 }
 
 const GRANULARITIES: BoundaryAtlasGranularity[] = ['package', 'folder', 'file'];
+const SUPPORT_RECEIPT_URL = 'https://nicdunz.gumroad.com/l/smrimu';
 const FINDING_TYPE_WEIGHT: Record<BoundaryAtlasFinding['type'], number> = {
   'boundary-violation': 0,
   'cross-feature': 1,
@@ -476,6 +477,16 @@ export function App() {
                       : 'Select a finding to jump from the summary into the exact edges behind it.'}
                   </li>
                 </ul>
+              </div>
+            ) : null}
+
+            {report ? (
+              <div className="support-note">
+                <span>Using this viewer to triage a repo?</span>
+                <a href={SUPPORT_RECEIPT_URL} target="_blank" rel="noreferrer">
+                  Optional $5 support receipt
+                </a>
+                <span>It does not unlock reports or change access to the app.</span>
               </div>
             ) : null}
           </article>

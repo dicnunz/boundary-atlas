@@ -21,6 +21,10 @@ test.describe('Boundary Atlas report viewer', () => {
     await expect(page.getByRole('heading', { name: /TypeScript and JavaScript repos/i })).toBeVisible();
     await expect(page.getByText('Boundary Atlas').first()).toBeVisible();
     await expect(page.locator('.finding-card')).toBeVisible();
+    await expect(page.getByRole('link', { name: 'Optional $5 support receipt' })).toHaveAttribute(
+      'href',
+      'https://nicdunz.gumroad.com/l/smrimu'
+    );
     await expect(page.locator('.finding-row').first()).toBeVisible();
     await expect(page.locator('.granularity-toggle button', { hasText: 'package' })).toBeVisible();
     await expect(page.locator('.granularity-toggle button', { hasText: 'folder' })).toBeVisible();

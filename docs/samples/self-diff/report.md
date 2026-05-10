@@ -1,7 +1,8 @@
-# Boundary Atlas: boundary-atlas
+# Boundary Atlas: boundary-atlas@HEAD
 
-- Generated: 2026-05-10T06:46:24.771Z
+- Generated: 2026-05-10T06:46:25.440Z
 - Root: /Users/nicdunz/Documents/Codex/2026-05-09/goal-chrome-plugin-chrome-openai-bundled-3/repos/boundary-atlas
+- Ref: HEAD
 
 ## Summary
 
@@ -372,3 +373,11 @@
 - folder: packages/core/src/types (fan-in 6, fan-out 0)
 - folder: packages/core/src (fan-in 0, fan-out 4)
 - folder: packages/core/src/analyze (fan-in 2, fan-out 3)
+
+## Drift
+
+- Base ref: HEAD~1
+- Head ref: HEAD
+- Added findings: 0
+- Removed findings: 0
+- Hotspot deltas: 0

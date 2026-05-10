@@ -1,12 +1,13 @@
 {
-  "kind": "analysis",
+  "kind": "diff",
   "version": "1",
-  "generatedAt": "2026-05-10T06:46:24.771Z",
+  "generatedAt": "2026-05-10T06:46:25.440Z",
   "project": {
-    "label": "boundary-atlas",
+    "label": "boundary-atlas@HEAD",
     "rootPath": "/Users/nicdunz/Documents/Codex/2026-05-09/goal-chrome-plugin-chrome-openai-bundled-3/repos/boundary-atlas",
-    "repoName": "boundary-atlas",
-    "configPath": "/Users/nicdunz/Documents/Codex/2026-05-09/goal-chrome-plugin-chrome-openai-bundled-3/repos/boundary-atlas/boundary-atlas.config.json"
+    "repoName": "boundary-atlas-rzbQNq",
+    "configPath": "/var/folders/l6/19hnkg9x3lvgr04lfz2845b40000gn/T/boundary-atlas-rzbQNq/boundary-atlas.config.json",
+    "analyzedAtRef": "HEAD"
   },
   "summary": {
     "fileCount": 22,
@@ -2404,8 +2405,13 @@
     "apps/web/src/main.tsx",
     "fixtures/ts-dead-exports-reporting/src/index.ts",
     "packages/cli/src/index.ts",
-    "packages/core/dist/index.d.ts",
-    "packages/core/dist/index.js",
     "packages/core/src/index.ts"
-  ]
+  ],
+  "drift": {
+    "baseRef": "HEAD~1",
+    "headRef": "HEAD",
+    "addedFindings": [],
+    "removedFindings": [],
+    "hotspotDeltas": []
+  }
 }

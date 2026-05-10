@@ -43,6 +43,7 @@ interface SummaryCard {
 
 const GRANULARITIES: BoundaryAtlasGranularity[] = ['package', 'folder', 'file'];
 const SUPPORT_RECEIPT_URL = 'https://nicdunz.gumroad.com/l/smrimu';
+const BROWSER_OPERATOR_OS_URL = 'https://nicdunz.gumroad.com/l/agent-browser-operator-os';
 const MINI_AUDIT_URL = 'https://nicdunz.gumroad.com/l/agent-workflow-mini-audit';
 const WORKFLOW_AUDIT_URL = 'https://nicdunz.gumroad.com/l/agent-workflow-audit';
 const FINDING_TYPE_WEIGHT: Record<BoundaryAtlasFinding['type'], number> = {
@@ -489,6 +490,9 @@ export function App() {
                   <a href={SUPPORT_RECEIPT_URL} target="_blank" rel="noreferrer">
                     Optional $5 support receipt
                   </a>
+                  <a href={BROWSER_OPERATOR_OS_URL} target="_blank" rel="noreferrer">
+                    Browser Operator OS $39
+                  </a>
                   <a href={MINI_AUDIT_URL} target="_blank" rel="noreferrer">
                     Mini audit $149
                   </a>
@@ -498,7 +502,8 @@ export function App() {
                 </div>
                 <span>
                   Written audits use redacted reports or public repo links only. No private source, secrets, credentials,
-                  production data, call, or gated report access.
+                  production data, call, or gated report access. Browser Operator OS is self-serve only: no Chrome plugin
+                  repair, guaranteed automation, account access, custom setup, or calls.
                 </span>
               </div>
             ) : null}

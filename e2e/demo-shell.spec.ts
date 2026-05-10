@@ -25,6 +25,10 @@ test.describe('Boundary Atlas report viewer', () => {
       'href',
       'https://nicdunz.gumroad.com/l/smrimu'
     );
+    await expect(page.getByRole('link', { name: 'Browser Operator OS $39' })).toHaveAttribute(
+      'href',
+      'https://nicdunz.gumroad.com/l/agent-browser-operator-os'
+    );
     await expect(page.getByRole('link', { name: 'Mini audit $149' })).toHaveAttribute(
       'href',
       'https://nicdunz.gumroad.com/l/agent-workflow-mini-audit'

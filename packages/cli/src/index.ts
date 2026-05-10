@@ -37,8 +37,9 @@ const SEVERITY_WEIGHT: Record<BoundaryAtlasReport['findings'][number]['severity'
 const CURRENT_DIR = path.dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = path.resolve(CURRENT_DIR, '../../..');
 const WEB_DIST_DIR = path.join(REPO_ROOT, 'apps/web/dist');
-const VERSION = '0.1.1';
+const VERSION = '0.1.3';
 const SUPPORT_RECEIPT_URL = 'https://nicdunz.gumroad.com/l/smrimu';
+const BROWSER_OPERATOR_OS_URL = 'https://nicdunz.gumroad.com/l/agent-browser-operator-os';
 const MINI_AUDIT_URL = 'https://nicdunz.gumroad.com/l/agent-workflow-mini-audit';
 const WORKFLOW_AUDIT_URL = 'https://nicdunz.gumroad.com/l/agent-workflow-audit';
 
@@ -178,9 +179,11 @@ program
   .action(() => {
     console.log('Support Boundary Atlas:');
     console.log(`- Optional $5 Codex run receipt: ${SUPPORT_RECEIPT_URL}`);
+    console.log(`- Agent Browser Operator OS for self-serve approval lanes, proof, and handoffs: ${BROWSER_OPERATOR_OS_URL}`);
     console.log(`- Mini audit for a redacted Boundary Atlas report or public TS/JS repo: ${MINI_AUDIT_URL}`);
     console.log(`- Full workflow audit for architecture drift review: ${WORKFLOW_AUDIT_URL}`);
     console.log('- Redacted reports and public repo links only. No private source, secrets, credentials, production data, or call required.');
+    console.log('- Browser operator kit is self-serve material only: no Chrome plugin repair, guaranteed automation, account access, custom setup, or calls.');
     console.log('- Use it if the architecture report saved review or refactor time.');
   });
 

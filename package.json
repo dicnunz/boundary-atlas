@@ -1,11 +1,17 @@
 {
   "name": "@boundary-atlas/root",
-  "version": "0.1.1",
+  "version": "0.1.3",
   "private": true,
-  "funding": {
-    "type": "custom",
-    "url": "https://nicdunz.gumroad.com/l/smrimu"
-  },
+  "funding": [
+    {
+      "type": "custom",
+      "url": "https://nicdunz.gumroad.com/l/smrimu"
+    },
+    {
+      "type": "custom",
+      "url": "https://nicdunz.gumroad.com/l/agent-browser-operator-os"
+    }
+  ],
   "type": "module",
   "packageManager": "npm@10.9.2",
   "engines": {

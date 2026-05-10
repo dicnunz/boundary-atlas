@@ -8,12 +8,14 @@ No SaaS. No API keys. No vague health score.
 
 If Boundary Atlas saves you review time, the smallest support path is the $5 Codex run receipt: <https://nicdunz.gumroad.com/l/smrimu>.
 
+For self-serve browser/account/public-action control templates around approvals, lanes, proof, handoffs, and go/no-go checks, use Agent Browser Operator OS: <https://nicdunz.gumroad.com/l/agent-browser-operator-os>.
+
 For a written no-call architecture audit of a TypeScript/JavaScript repo or Boundary Atlas report export, use the paid setup audit path:
 
 - Mini audit: <https://nicdunz.gumroad.com/l/agent-workflow-mini-audit>
 - Full workflow audit: <https://nicdunz.gumroad.com/l/agent-workflow-audit>
 
-Redacted reports and public repo links only. Do not paste private source, secrets, credentials, auth files, production data, or personal data. No call required.
+Redacted reports and public repo links only. Do not paste private source, secrets, credentials, auth files, production data, or personal data. No call required. The browser operator kit is self-serve material only; it does not include Chrome plugin repair, guaranteed automation, account access, custom setup, or calls.
 
 ## What It Catches
 

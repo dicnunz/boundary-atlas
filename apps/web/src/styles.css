@@ -329,6 +329,12 @@ input {
   line-height: 1.45;
 }
 
+.support-note-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.65rem 0.9rem;
+}
+
 .support-note a {
   width: fit-content;
   color: var(--accent-2);

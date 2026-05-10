@@ -1,7 +1,7 @@
 # Boundary Atlas: js-deep-import-storefront
 
-- Generated: 2026-04-19T02:41:55.065Z
-- Root: /Users/nicdunz/Documents/Codex/2026-04-18-go-through-my-github-and-decide/repo_audit/boundary-atlas/fixtures/js-deep-import-storefront
+- Generated: 2026-05-10T05:42:29.924Z
+- Root: /Users/nicdunz/Documents/Codex/2026-05-09/goal-chrome-plugin-chrome-openai-bundled-3/repos/boundary-atlas/fixtures/js-deep-import-storefront
 
 ## Summary
 

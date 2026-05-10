@@ -39,6 +39,8 @@ const REPO_ROOT = path.resolve(CURRENT_DIR, '../../..');
 const WEB_DIST_DIR = path.join(REPO_ROOT, 'apps/web/dist');
 const VERSION = '0.1.1';
 const SUPPORT_RECEIPT_URL = 'https://nicdunz.gumroad.com/l/smrimu';
+const MINI_AUDIT_URL = 'https://nicdunz.gumroad.com/l/agent-workflow-mini-audit';
+const WORKFLOW_AUDIT_URL = 'https://nicdunz.gumroad.com/l/agent-workflow-audit';
 
 async function ensureParentDirectory(filePath: string): Promise<void> {
   await mkdir(path.dirname(filePath), { recursive: true });
@@ -176,6 +178,9 @@ program
   .action(() => {
     console.log('Support Boundary Atlas:');
     console.log(`- Optional $5 Codex run receipt: ${SUPPORT_RECEIPT_URL}`);
+    console.log(`- Mini audit for a redacted Boundary Atlas report or public TS/JS repo: ${MINI_AUDIT_URL}`);
+    console.log(`- Full workflow audit for architecture drift review: ${WORKFLOW_AUDIT_URL}`);
+    console.log('- Redacted reports and public repo links only. No private source, secrets, credentials, production data, or call required.');
     console.log('- Use it if the architecture report saved review or refactor time.');
   });
 

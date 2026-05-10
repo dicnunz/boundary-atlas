@@ -8,6 +8,13 @@ No SaaS. No API keys. No vague health score.
 
 If Boundary Atlas saves you review time, the smallest support path is the $5 Codex run receipt: <https://nicdunz.gumroad.com/l/smrimu>.
 
+For a written no-call architecture audit of a TypeScript/JavaScript repo or Boundary Atlas report export, use the paid setup audit path:
+
+- Mini audit: <https://nicdunz.gumroad.com/l/agent-workflow-mini-audit>
+- Full workflow audit: <https://nicdunz.gumroad.com/l/agent-workflow-audit>
+
+Redacted reports and public repo links only. Do not paste private source, secrets, credentials, auth files, production data, or personal data. No call required.
+
 ## What It Catches
 
 | Signal | What Boundary Atlas flags | Why it matters |

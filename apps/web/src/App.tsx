@@ -43,6 +43,8 @@ interface SummaryCard {
 
 const GRANULARITIES: BoundaryAtlasGranularity[] = ['package', 'folder', 'file'];
 const SUPPORT_RECEIPT_URL = 'https://nicdunz.gumroad.com/l/smrimu';
+const MINI_AUDIT_URL = 'https://nicdunz.gumroad.com/l/agent-workflow-mini-audit';
+const WORKFLOW_AUDIT_URL = 'https://nicdunz.gumroad.com/l/agent-workflow-audit';
 const FINDING_TYPE_WEIGHT: Record<BoundaryAtlasFinding['type'], number> = {
   'boundary-violation': 0,
   'cross-feature': 1,
@@ -483,10 +485,21 @@ export function App() {
             {report ? (
               <div className="support-note">
                 <span>Using this viewer to triage a repo?</span>
-                <a href={SUPPORT_RECEIPT_URL} target="_blank" rel="noreferrer">
-                  Optional $5 support receipt
-                </a>
-                <span>It does not unlock reports or change access to the app.</span>
+                <div className="support-note-links">
+                  <a href={SUPPORT_RECEIPT_URL} target="_blank" rel="noreferrer">
+                    Optional $5 support receipt
+                  </a>
+                  <a href={MINI_AUDIT_URL} target="_blank" rel="noreferrer">
+                    Mini audit $149
+                  </a>
+                  <a href={WORKFLOW_AUDIT_URL} target="_blank" rel="noreferrer">
+                    Workflow audit $750
+                  </a>
+                </div>
+                <span>
+                  Written audits use redacted reports or public repo links only. No private source, secrets, credentials,
+                  production data, call, or gated report access.
+                </span>
               </div>
             ) : null}
           </article>

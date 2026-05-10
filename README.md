@@ -6,6 +6,8 @@ Boundary Atlas is a local-first architecture radar for TypeScript and JavaScript
 
 No SaaS. No API keys. No vague health score.
 
+If Boundary Atlas saves you review time, the smallest support path is the $5 Codex run receipt: <https://nicdunz.gumroad.com/l/smrimu>.
+
 ## What It Catches
 
 | Signal | What Boundary Atlas flags | Why it matters |

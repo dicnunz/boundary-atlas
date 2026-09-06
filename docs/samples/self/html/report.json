@@ -1,24 +1,24 @@
 {
   "kind": "analysis",
   "version": "1",
-  "generatedAt": "2026-05-10T06:46:24.771Z",
+  "generatedAt": "2026-09-06T18:55:18.726Z",
   "project": {
     "label": "boundary-atlas",
-    "rootPath": "/Users/nicdunz/Documents/Codex/2026-05-09/goal-chrome-plugin-chrome-openai-bundled-3/repos/boundary-atlas",
+    "rootPath": "/workspace/scratch/e671c73efcba/boundary-atlas",
     "repoName": "boundary-atlas",
-    "configPath": "/Users/nicdunz/Documents/Codex/2026-05-09/goal-chrome-plugin-chrome-openai-bundled-3/repos/boundary-atlas/boundary-atlas.config.json"
+    "configPath": "/workspace/scratch/e671c73efcba/boundary-atlas/boundary-atlas.config.json"
   },
   "summary": {
-    "fileCount": 22,
+    "fileCount": 28,
     "folderCount": 11,
     "packageCount": 4,
-    "internalEdgeCount": 33,
+    "internalEdgeCount": 44,
     "cycleCount": 0,
     "deepImportCount": 0,
     "deadExportCount": 38,
     "boundaryViolationCount": 0,
     "crossFeatureCount": 0,
-    "hotspotCount": 10
+    "hotspotCount": 12
   },
   "config": {
     "exclude": [
@@ -77,10 +77,50 @@
       "granularity": "file",
       "nodes": [
         {
+          "id": "file:apps/web/src/App.test.tsx",
+          "kind": "file",
+          "label": "App.test.tsx",
+          "path": "apps/web/src/App.test.tsx",
+          "packageName": "@boundary-atlas/web",
+          "isPublicEntrypoint": false,
+          "fanIn": 0,
+          "fanOut": 1
+        },
+        {
           "id": "file:apps/web/src/App.tsx",
           "kind": "file",
           "label": "App.tsx",
           "path": "apps/web/src/App.tsx",
+          "packageName": "@boundary-atlas/web",
+          "isPublicEntrypoint": false,
+          "fanIn": 2,
+          "fanOut": 4
+        },
+        {
+          "id": "file:apps/web/src/explore-graph.test.ts",
+          "kind": "file",
+          "label": "explore-graph.test.ts",
+          "path": "apps/web/src/explore-graph.test.ts",
+          "packageName": "@boundary-atlas/web",
+          "isPublicEntrypoint": false,
+          "fanIn": 0,
+          "fanOut": 2
+        },
+        {
+          "id": "file:apps/web/src/explore-graph.ts",
+          "kind": "file",
+          "label": "explore-graph.ts",
+          "path": "apps/web/src/explore-graph.ts",
+          "packageName": "@boundary-atlas/web",
+          "isPublicEntrypoint": false,
+          "fanIn": 2,
+          "fanOut": 1
+        },
+        {
+          "id": "file:apps/web/src/GraphView.tsx",
+          "kind": "file",
+          "label": "GraphView.tsx",
+          "path": "apps/web/src/GraphView.tsx",
           "packageName": "@boundary-atlas/web",
           "isPublicEntrypoint": false,
           "fanIn": 1,
@@ -103,8 +143,28 @@
           "path": "apps/web/src/report-types.ts",
           "packageName": "@boundary-atlas/web",
           "isPublicEntrypoint": false,
-          "fanIn": 1,
+          "fanIn": 6,
           "fanOut": 0
+        },
+        {
+          "id": "file:apps/web/src/validate-report.test.ts",
+          "kind": "file",
+          "label": "validate-report.test.ts",
+          "path": "apps/web/src/validate-report.test.ts",
+          "packageName": "@boundary-atlas/web",
+          "isPublicEntrypoint": false,
+          "fanIn": 0,
+          "fanOut": 2
+        },
+        {
+          "id": "file:apps/web/src/validate-report.ts",
+          "kind": "file",
+          "label": "validate-report.ts",
+          "path": "apps/web/src/validate-report.ts",
+          "packageName": "@boundary-atlas/web",
+          "isPublicEntrypoint": false,
+          "fanIn": 2,
+          "fanOut": 1
         },
         {
           "id": "file:apps/web/vite.config.ts",
@@ -299,8 +359,88 @@
       ],
       "edges": [
         {
+          "id": "file:apps/web/src/App.test.tsx->file:apps/web/src/App.tsx:import",
+          "source": "file:apps/web/src/App.test.tsx",
+          "target": "file:apps/web/src/App.tsx",
+          "kind": "import",
+          "importCount": 1,
+          "specifiers": [
+            "./App.js"
+          ]
+        },
+        {
+          "id": "file:apps/web/src/App.tsx->file:apps/web/src/explore-graph.ts:import",
+          "source": "file:apps/web/src/App.tsx",
+          "target": "file:apps/web/src/explore-graph.ts",
+          "kind": "import",
+          "importCount": 1,
+          "specifiers": [
+            "./explore-graph.js"
+          ]
+        },
+        {
+          "id": "file:apps/web/src/App.tsx->file:apps/web/src/GraphView.tsx:import",
+          "source": "file:apps/web/src/App.tsx",
+          "target": "file:apps/web/src/GraphView.tsx",
+          "kind": "import",
+          "importCount": 1,
+          "specifiers": [
+            "./GraphView.js"
+          ]
+        },
+        {
           "id": "file:apps/web/src/App.tsx->file:apps/web/src/report-types.ts:import",
           "source": "file:apps/web/src/App.tsx",
+          "target": "file:apps/web/src/report-types.ts",
+          "kind": "import",
+          "importCount": 1,
+          "specifiers": [
+            "./report-types.js"
+          ]
+        },
+        {
+          "id": "file:apps/web/src/App.tsx->file:apps/web/src/validate-report.ts:import",
+          "source": "file:apps/web/src/App.tsx",
+          "target": "file:apps/web/src/validate-report.ts",
+          "kind": "import",
+          "importCount": 1,
+          "specifiers": [
+            "./validate-report.js"
+          ]
+        },
+        {
+          "id": "file:apps/web/src/explore-graph.test.ts->file:apps/web/src/explore-graph.ts:import",
+          "source": "file:apps/web/src/explore-graph.test.ts",
+          "target": "file:apps/web/src/explore-graph.ts",
+          "kind": "import",
+          "importCount": 1,
+          "specifiers": [
+            "./explore-graph.js"
+          ]
+        },
+        {
+          "id": "file:apps/web/src/explore-graph.test.ts->file:apps/web/src/report-types.ts:import",
+          "source": "file:apps/web/src/explore-graph.test.ts",
+          "target": "file:apps/web/src/report-types.ts",
+          "kind": "import",
+          "importCount": 1,
+          "specifiers": [
+            "./report-types.js"
+          ]
+        },
+        {
+          "id": "file:apps/web/src/explore-graph.ts->file:apps/web/src/report-types.ts:import",
+          "source": "file:apps/web/src/explore-graph.ts",
+          "target": "file:apps/web/src/report-types.ts",
+          "kind": "import",
+          "importCount": 1,
+          "specifiers": [
+            "./report-types.js"
+          ]
+        },
+        {
+          "id": "file:apps/web/src/GraphView.tsx->file:apps/web/src/report-types.ts:import",
+          "source": "file:apps/web/src/GraphView.tsx",
           "target": "file:apps/web/src/report-types.ts",
           "kind": "import",
           "importCount": 1,
@@ -316,6 +456,36 @@
           "importCount": 1,
           "specifiers": [
             "./App.js"
+          ]
+        },
+        {
+          "id": "file:apps/web/src/validate-report.test.ts->file:apps/web/src/report-types.ts:import",
+          "source": "file:apps/web/src/validate-report.test.ts",
+          "target": "file:apps/web/src/report-types.ts",
+          "kind": "import",
+          "importCount": 1,
+          "specifiers": [
+            "./report-types.js"
+          ]
+        },
+        {
+          "id": "file:apps/web/src/validate-report.test.ts->file:apps/web/src/validate-report.ts:import",
+          "source": "file:apps/web/src/validate-report.test.ts",
+          "target": "file:apps/web/src/validate-report.ts",
+          "kind": "import",
+          "importCount": 1,
+          "specifiers": [
+            "./validate-report.js"
+          ]
+        },
+        {
+          "id": "file:apps/web/src/validate-report.ts->file:apps/web/src/report-types.ts:import",
+          "source": "file:apps/web/src/validate-report.ts",
+          "target": "file:apps/web/src/report-types.ts",
+          "kind": "import",
+          "importCount": 1,
+          "specifiers": [
+            "./report-types.js"
           ]
         },
         {
@@ -888,6 +1058,52 @@
   },
   "findings": [
     {
+      "id": "finding:hotspot:file hotspot: apps/web/src/App.tsx:apps/web/src/App.tsx->:apps/web/src/App.tsx",
+      "fingerprint": "hotspot:file hotspot: apps/web/src/App.tsx:apps/web/src/App.tsx->:apps/web/src/App.tsx",
+      "type": "hotspot",
+      "severity": "warn",
+      "title": "file hotspot: apps/web/src/App.tsx",
+      "summary": "apps/web/src/App.tsx has fan-in 2 and fan-out 4.",
+      "whyRisky": "High fan-in means many callers depend on this node. High fan-out means this node reaches across many other areas. Either shape concentrates architectural churn.",
+      "nodeIds": [
+        "file:apps/web/src/App.tsx"
+      ],
+      "evidence": [
+        {
+          "label": "apps/web/src/App.tsx",
+          "sourcePath": "apps/web/src/App.tsx"
+        }
+      ],
+      "metrics": {
+        "granularity": "file",
+        "fanIn": 2,
+        "fanOut": 4
+      }
+    },
+    {
+      "id": "finding:hotspot:file hotspot: apps/web/src/report-types.ts:apps/web/src/report-types.ts->:apps/web/src/report-types.ts",
+      "fingerprint": "hotspot:file hotspot: apps/web/src/report-types.ts:apps/web/src/report-types.ts->:apps/web/src/report-types.ts",
+      "type": "hotspot",
+      "severity": "warn",
+      "title": "file hotspot: apps/web/src/report-types.ts",
+      "summary": "apps/web/src/report-types.ts has fan-in 6 and fan-out 0.",
+      "whyRisky": "High fan-in means many callers depend on this node. High fan-out means this node reaches across many other areas. Either shape concentrates architectural churn.",
+      "nodeIds": [
+        "file:apps/web/src/report-types.ts"
+      ],
+      "evidence": [
+        {
+          "label": "apps/web/src/report-types.ts",
+          "sourcePath": "apps/web/src/report-types.ts"
+        }
+      ],
+      "metrics": {
+        "granularity": "file",
+        "fanIn": 6,
+        "fanOut": 0
+      }
+    },
+    {
       "id": "finding:hotspot:file hotspot: packages/core/src/analyze/analyze-repository.ts:packages/core/src/analyze/analyze-repository.ts->:packages/core/src/analyze/analyze-repository.ts",
       "fingerprint": "hotspot:file hotspot: packages/core/src/analyze/analyze-repository.ts:packages/core/src/analyze/analyze-repository.ts->:packages/core/src/analyze/analyze-repository.ts",
       "type": "hotspot",
@@ -1302,29 +1518,6 @@
       }
     },
     {
-      "id": "finding:dead-export:Unused export BoundaryAtlasGraph:apps/web/src/report-types.ts->:apps/web/src/report-types.ts:32",
-      "fingerprint": "dead-export:Unused export BoundaryAtlasGraph:apps/web/src/report-types.ts->:apps/web/src/report-types.ts:32",
-      "type": "dead-export",
-      "severity": "warn",
-      "title": "Unused export BoundaryAtlasGraph",
-      "summary": "Export `BoundaryAtlasGraph` in apps/web/src/report-types.ts is not referenced internally.",
-      "whyRisky": "Unused exports widen the apparent public surface and make the module harder to maintain because callers cannot distinguish real API from stale code.",
-      "nodeIds": [
-        "file:apps/web/src/report-types.ts"
-      ],
-      "evidence": [
-        {
-          "label": "apps/web/src/report-types.ts:32",
-          "sourcePath": "apps/web/src/report-types.ts",
-          "details": "No internal import or re-export references this export, and it is not part of a public entrypoint surface."
-        }
-      ],
-      "metrics": {
-        "exportName": "BoundaryAtlasGraph",
-        "line": 32
-      }
-    },
-    {
       "id": "finding:dead-export:Unused export BoundaryAtlasGraphDrift:packages/core/src/types/report.ts->:packages/core/src/types/report.ts:135",
       "fingerprint": "dead-export:Unused export BoundaryAtlasGraphDrift:packages/core/src/types/report.ts->:packages/core/src/types/report.ts:135",
       "type": "dead-export",
@@ -1345,6 +1538,29 @@
       "metrics": {
         "exportName": "BoundaryAtlasGraphDrift",
         "line": 135
+      }
+    },
+    {
+      "id": "finding:dead-export:Unused export BoundaryAtlasGraphEdge:apps/web/src/report-types.ts->:apps/web/src/report-types.ts:23",
+      "fingerprint": "dead-export:Unused export BoundaryAtlasGraphEdge:apps/web/src/report-types.ts->:apps/web/src/report-types.ts:23",
+      "type": "dead-export",
+      "severity": "warn",
+      "title": "Unused export BoundaryAtlasGraphEdge",
+      "summary": "Export `BoundaryAtlasGraphEdge` in apps/web/src/report-types.ts is not referenced internally.",
+      "whyRisky": "Unused exports widen the apparent public surface and make the module harder to maintain because callers cannot distinguish real API from stale code.",
+      "nodeIds": [
+        "file:apps/web/src/report-types.ts"
+      ],
+      "evidence": [
+        {
+          "label": "apps/web/src/report-types.ts:23",
+          "sourcePath": "apps/web/src/report-types.ts",
+          "details": "No internal import or re-export references this export, and it is not part of a public entrypoint surface."
+        }
+      ],
+      "metrics": {
+        "exportName": "BoundaryAtlasGraphEdge",
+        "line": 23
       }
     },
     {
@@ -2004,6 +2220,16 @@
       "rationale": "packages/core/src/types/report.ts has fan-in 7 and fan-out 1."
     },
     {
+      "id": "hotspot:file:apps/web/src/report-types.ts",
+      "granularity": "file",
+      "nodeId": "file:apps/web/src/report-types.ts",
+      "label": "report-types.ts",
+      "path": "apps/web/src/report-types.ts",
+      "fanIn": 6,
+      "fanOut": 0,
+      "rationale": "apps/web/src/report-types.ts has fan-in 6 and fan-out 0."
+    },
+    {
       "id": "hotspot:file:packages/core/src/analyze/analyze-repository.ts",
       "granularity": "file",
       "nodeId": "file:packages/core/src/analyze/analyze-repository.ts",
@@ -2032,6 +2258,16 @@
       "fanIn": 0,
       "fanOut": 5,
       "rationale": "packages/core/src/index.ts has fan-in 0 and fan-out 5."
+    },
+    {
+      "id": "hotspot:file:apps/web/src/App.tsx",
+      "granularity": "file",
+      "nodeId": "file:apps/web/src/App.tsx",
+      "label": "App.tsx",
+      "path": "apps/web/src/App.tsx",
+      "fanIn": 2,
+      "fanOut": 4,
+      "rationale": "apps/web/src/App.tsx has fan-in 2 and fan-out 4."
     },
     {
       "id": "hotspot:file:packages/core/src/diff/compare-git-refs.ts",
@@ -2144,10 +2380,10 @@
       "reason": "No internal import or re-export references this export, and it is not part of a public entrypoint surface."
     },
     {
-      "id": "dead-export:apps/web/src/report-types.ts#BoundaryAtlasGraph",
+      "id": "dead-export:apps/web/src/report-types.ts#BoundaryAtlasGraphEdge",
       "filePath": "apps/web/src/report-types.ts",
-      "exportName": "BoundaryAtlasGraph",
-      "line": 32,
+      "exportName": "BoundaryAtlasGraphEdge",
+      "line": 23,
       "sourceNodeId": "file:apps/web/src/report-types.ts",
       "reason": "No internal import or re-export references this export, and it is not part of a public entrypoint surface."
     },

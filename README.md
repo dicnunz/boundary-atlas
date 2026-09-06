@@ -22,6 +22,15 @@ Bundled fixtures show the detectors on small example repositories.
 - Fixture catalog: [`fixtures/README.md`](fixtures/README.md)
 - Default web demo report: `ts-cross-feature-portal`, preloaded in the viewer with a high-severity finding selected
 
+The viewer supports the full review loop:
+
+- Search module paths or import specifiers in file, folder, and package graphs. Matching import specifiers keep both endpoints visible.
+- Select a module from the graph or the keyboard-accessible path table, follow incoming and outgoing dependencies, and focus its direct neighborhood.
+- Filter the review queue by finding type, severity, or evidence text, then isolate a finding in the graph.
+- Open a local v1 JSON report up to 20 MiB. Invalid JSON, unsupported versions, duplicate IDs, and missing graph references produce field-level errors while the current report remains open.
+
+Report files are read in the browser and are never uploaded. Exported viewers use local assets and an embedded report. The default relative Vite base also supports hosting the viewer in a subdirectory.
+
 ```text
 Boundary Atlas: ts-cross-feature-portal
 Files: 9
@@ -82,6 +91,12 @@ Export the offline HTML viewer:
 ```bash
 node packages/cli/dist/index.js analyze ./fixtures/ts-cross-feature-portal \
   --html ./output/ts-cross-feature-portal-html
+```
+
+Serve that directory locally, then open `http://localhost:8080`. All viewer assets and report data are included; no internet connection is needed. A local server is required because browsers restrict JavaScript modules opened directly with `file://`.
+
+```bash
+python3 -m http.server 8080 --directory ./output/ts-cross-feature-portal-html
 ```
 
 Compare two refs for architecture drift:

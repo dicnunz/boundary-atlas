@@ -1,10 +1,10 @@
 {
   "kind": "analysis",
   "version": "1",
-  "generatedAt": "2026-05-10T06:46:23.234Z",
+  "generatedAt": "2026-09-06T18:55:16.340Z",
   "project": {
     "label": "ts-dead-exports-reporting",
-    "rootPath": "/Users/nicdunz/Documents/Codex/2026-05-09/goal-chrome-plugin-chrome-openai-bundled-3/repos/boundary-atlas/fixtures/ts-dead-exports-reporting",
+    "rootPath": "/workspace/scratch/e671c73efcba/boundary-atlas/fixtures/ts-dead-exports-reporting",
     "repoName": "ts-dead-exports-reporting"
   },
   "summary": {

@@ -146,7 +146,7 @@ export function App() {
         <div className="atlas-actions">
           <span className="local-badge"><i /> Local report viewer</span>
           <button className="primary-button" type="button" disabled={loading} onClick={() => inputRef.current?.click()}>{loading ? 'Reading report…' : 'Open report JSON'} <span aria-hidden="true">↗</span></button>
-          <input ref={inputRef} className="visually-hidden" type="file" accept=".json,application/json" aria-label="Open report JSON" onChange={handleFileLoad} />
+          <input ref={inputRef} hidden type="file" accept=".json,application/json" aria-label="Open report JSON" onChange={handleFileLoad} />
         </div>
       </header>
 

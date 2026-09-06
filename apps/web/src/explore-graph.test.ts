@@ -1,6 +1,7 @@
+import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { filterGraph, findingNodeIds, neighborhoodIds, nodeConnections } from './explore-graph.js';
-import type { BoundaryAtlasFinding, BoundaryAtlasGraph } from './report-types.js';
+import type { BoundaryAtlasFinding, BoundaryAtlasGraph, BoundaryAtlasReport } from './report-types.js';
 
 const graph: BoundaryAtlasGraph = {
   granularity: 'file',
@@ -49,6 +50,23 @@ describe('graph exploration', () => {
     const result = filterGraph(graph, '', findingNodeIds(graph, finding));
     expect(result.nodes.map((node) => node.id)).toEqual(['api', 'storage']);
     expect(result.edges.map((edge) => edge.id)).toEqual(['api-storage']);
+  });
+
+  it('retains all four evidenced dependencies when isolating the default checkout fixture finding', () => {
+    const report = JSON.parse(readFileSync('apps/web/public/demo-report.json', 'utf8')) as BoundaryAtlasReport;
+    const finding = report.findings.find((entry) => entry.type === 'cross-feature' && entry.severity === 'high')!;
+    expect(finding.title).toBe('Cross-feature fan-out from src/features/checkout');
+    const isolated = filterGraph(report.graphs.file, '', findingNodeIds(report.graphs.file, finding));
+    expect(isolated.nodes.map((node) => node.path)).toEqual([
+      'src/features/auth/index.ts',
+      'src/features/checkout/submit-order.ts',
+      'src/features/finance/index.ts',
+      'src/features/marketing/index.ts',
+      'src/features/support/index.ts'
+    ]);
+    expect(isolated.edges).toHaveLength(4);
+    expect(isolated.edges.every((edge) => edge.source === 'file:src/features/checkout/submit-order.ts')).toBe(true);
+    expect(isolated.edges.map((edge) => edge.target)).toEqual(finding.evidence.map((item) => `file:${item.targetPath}`));
   });
 
   it('preserves edge direction, kind, specifiers and statement counts for the inspector', () => {

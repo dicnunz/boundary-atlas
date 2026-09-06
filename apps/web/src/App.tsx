@@ -28,6 +28,9 @@ export function App() {
   const loadSequence = useRef(0);
   const deferredSearch = useDeferredValue(search);
   const deferredFindingSearch = useDeferredValue(findingSearch);
+  // Clear/reset actions must not keep filtering by a deferred query from the previous view.
+  const graphQuery = search.trim() ? deferredSearch : '';
+  const findingQuery = findingSearch.trim() ? deferredFindingSearch : '';
 
   const applyReport = useCallback((nextReport: BoundaryAtlasReport, nextSource: string) => {
     const featured = prioritizeFindings(nextReport.findings)[0];
@@ -106,17 +109,17 @@ export function App() {
   const focusIds = useMemo(() => focus === 'finding' ? evidenceIds
     : focus === 'neighbors' && activeGraph && selectedNodeId ? neighborhoodIds(activeGraph, selectedNodeId) : null,
   [activeGraph, focus, evidenceIds, selectedNodeId]);
-  const visibleGraph = useMemo(() => activeGraph ? filterGraph(activeGraph, deferredSearch, focusIds) : null,
-    [activeGraph, deferredSearch, focusIds]);
+  const visibleGraph = useMemo(() => activeGraph ? filterGraph(activeGraph, graphQuery, focusIds) : null,
+    [activeGraph, graphQuery, focusIds]);
   const connections = useMemo(() => activeGraph && selectedNode ? nodeConnections(activeGraph, selectedNode.id) : null, [activeGraph, selectedNode]);
   const visibleFindings = useMemo(() => {
-    const query = deferredFindingSearch.trim().toLowerCase();
+    const query = findingQuery.trim().toLowerCase();
     return findings.filter((finding) =>
       (findingType === 'all' || finding.type === findingType)
       && (severity === 'all' || finding.severity === severity)
       && (!query || [finding.title, finding.summary, finding.type, ...finding.evidence.flatMap((item) => [item.label, item.sourcePath ?? '', item.targetPath ?? '', item.specifier ?? ''])].join(' ').toLowerCase().includes(query))
     );
-  }, [findings, findingType, severity, deferredFindingSearch]);
+  }, [findings, findingType, severity, findingQuery]);
   const sortedNodes = useMemo(() => visibleGraph?.nodes.slice().sort((left, right) => left.path.localeCompare(right.path)) ?? [], [visibleGraph]);
   const highCount = findings.filter((finding) => finding.severity === 'high').length;
 

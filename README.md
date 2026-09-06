@@ -1,5 +1,7 @@
 # Boundary Atlas
 
+[Open the live demo](https://dicnunz.github.io/demos/boundary-atlas/)
+
 Boundary Atlas is a static import analyzer for TypeScript and JavaScript repositories. It parses real imports with `ts-morph`, builds file, folder, and package graphs, and turns them into findings you can export as JSON, Markdown, or an offline HTML viewer.
 
 ## What It Catches

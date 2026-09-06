@@ -53,6 +53,24 @@ test.describe('Boundary Atlas report viewer', () => {
     await expect(page.getByText('5 of 5 findings', { exact: true })).toBeVisible();
   });
 
+  test('keeps all four checkout dependencies when isolating after clearing a path search', async ({ page }) => {
+    await page.goto('/');
+    const search = page.getByRole('searchbox', { name: 'Search modules or import specifiers' });
+    await expect(page.locator('.finding-card h3')).toHaveText('Cross-feature fan-out from src/features/checkout');
+    await search.fill('checkout');
+    await expect(page.getByText('4 of 9 nodes · 3 edges', { exact: true })).toBeVisible();
+    await search.fill('');
+    await page.getByRole('button', { name: 'Isolate finding in graph', exact: true }).click();
+    await expect(search).toHaveValue('');
+    await expect(page.getByText('5 of 9 nodes · 4 edges', { exact: true })).toBeVisible();
+    await expect(page.locator('.finding-card h3')).toHaveText('Cross-feature fan-out from src/features/checkout');
+    for (const feature of ['auth', 'finance', 'marketing', 'support']) {
+      await expect(page.locator('.module-table').getByRole('button', { name: `src/features/${feature}/index.ts public`, exact: true })).toBeVisible();
+    }
+    await page.getByRole('button', { name: 'Show full graph', exact: true }).click();
+    await expect(page.getByText('9 of 9 nodes · 10 edges', { exact: true })).toBeVisible();
+  });
+
   test('navigates dependencies with keyboard controls and resets focus when switching scope', async ({ page }) => {
     await page.goto('/');
     const module = page.locator('.module-table').getByRole('button', { name: /src\/features\/checkout\/submit-order.ts/ });

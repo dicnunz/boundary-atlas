@@ -1,21 +1,6 @@
 # Boundary Atlas
 
-![Boundary Atlas architecture blueprint](docs/assets/generated/boundary-atlas-hero.png)
-
-Boundary Atlas is a local-first architecture radar for TypeScript and JavaScript repositories. It parses real imports with `ts-morph`, builds file, folder, and package graphs, and turns them into evidence-backed findings you can ship as JSON, Markdown, or an offline HTML viewer.
-
-No SaaS. No API keys. No vague health score.
-
-If Boundary Atlas saves you review time, the smallest support path is the $5 Codex run receipt: <https://nicdunz.gumroad.com/l/smrimu>.
-
-For self-serve browser/account/public-action control templates around approvals, lanes, proof, handoffs, and go/no-go checks, use Agent Browser Operator OS: <https://nicdunz.gumroad.com/l/agent-browser-operator-os>.
-
-For a written no-call architecture audit of a TypeScript/JavaScript repo or Boundary Atlas report export, use the paid setup audit path:
-
-- Mini audit: <https://nicdunz.gumroad.com/l/agent-workflow-mini-audit>
-- Full workflow audit: <https://nicdunz.gumroad.com/l/agent-workflow-audit>
-
-Redacted reports and public repo links only. Do not paste private source, secrets, credentials, auth files, production data, or personal data. No call required. The browser operator kit is self-serve material only; it does not include Chrome plugin repair, guaranteed automation, account access, custom setup, or calls.
+Boundary Atlas is a static import analyzer for TypeScript and JavaScript repositories. It parses real imports with `ts-morph`, builds file, folder, and package graphs, and turns them into findings you can export as JSON, Markdown, or an offline HTML viewer.
 
 ## What It Catches
 
@@ -29,9 +14,9 @@ Redacted reports and public repo links only. Do not paste private source, secret
 | Hotspots | nodes with unusually high fan-in or fan-out | churn concentrates around the same files and folders |
 | Git drift | findings and hotspots added or removed between two refs | architectural regression becomes visible in code review windows |
 
-## Demo Proof
+## Example output
 
-Boundary Atlas ships with committed fixtures, committed reports, and committed screenshots so the repo proves itself immediately.
+Bundled fixtures show the detectors on small example repositories.
 
 - Sample output index: [`docs/samples/README.md`](docs/samples/README.md)
 - Fixture catalog: [`fixtures/README.md`](fixtures/README.md)
@@ -111,7 +96,7 @@ node packages/cli/dist/index.js diff . \
 
 ## Committed Outputs
 
-Boundary Atlas keeps proof artifacts in the repo instead of asking you to trust the claims.
+Example reports are committed for inspection.
 
 - [`docs/samples/README.md`](docs/samples/README.md): index of committed reports
 - [`docs/samples/fixtures/ts-cycle-dashboard/report.md`](docs/samples/fixtures/ts-cycle-dashboard/report.md): cycle report
@@ -191,3 +176,7 @@ npm run e2e
 ## Scope
 
 v1 is intentionally TS/JS-only. Boundary Atlas analyzes static imports, re-exports, public entrypoints, configured boundaries, and graph structure inside the repository you point it at.
+
+## Project status
+
+AI-assisted personal project. Bundled examples and tests demonstrate a limited scope; they are not evidence of production use or independent validation.

@@ -316,30 +316,8 @@ input {
   font-size: 0.78rem;
 }
 
-.support-note {
-  display: grid;
-  gap: 0.35rem;
-  margin: 1rem 1rem 0;
-  padding: 0.85rem 0.95rem;
-  border: 1px solid rgba(119, 224, 181, 0.2);
-  border-radius: 1rem;
-  background: rgba(119, 224, 181, 0.08);
-  color: var(--text-1);
-  font-size: 0.86rem;
-  line-height: 1.45;
-}
 
-.support-note-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.65rem 0.9rem;
-}
 
-.support-note a {
-  width: fit-content;
-  color: var(--accent-2);
-  font-weight: 800;
-}
 
 .finding-list {
   max-height: 34vh;

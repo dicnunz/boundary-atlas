@@ -1,12 +1,12 @@
 {
   "kind": "diff",
   "version": "1",
-  "generatedAt": "2026-05-10T06:46:25.440Z",
+  "generatedAt": "2026-09-06T18:55:20.012Z",
   "project": {
     "label": "boundary-atlas@HEAD",
-    "rootPath": "/Users/nicdunz/Documents/Codex/2026-05-09/goal-chrome-plugin-chrome-openai-bundled-3/repos/boundary-atlas",
-    "repoName": "boundary-atlas-rzbQNq",
-    "configPath": "/var/folders/l6/19hnkg9x3lvgr04lfz2845b40000gn/T/boundary-atlas-rzbQNq/boundary-atlas.config.json",
+    "rootPath": "/workspace/scratch/e671c73efcba/boundary-atlas",
+    "repoName": "boundary-atlas-pKrCMl",
+    "configPath": "/tmp/boundary-atlas-pKrCMl/boundary-atlas.config.json",
     "analyzedAtRef": "HEAD"
   },
   "summary": {

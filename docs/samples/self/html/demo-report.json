@@ -1,10 +1,10 @@
 {
   "kind": "analysis",
   "version": "1",
-  "generatedAt": "2026-05-10T05:42:30.619Z",
+  "generatedAt": "2026-09-06T18:49:27.822Z",
   "project": {
     "label": "ts-cross-feature-portal",
-    "rootPath": "/Users/nicdunz/Documents/Codex/2026-05-09/goal-chrome-plugin-chrome-openai-bundled-3/repos/boundary-atlas/fixtures/ts-cross-feature-portal",
+    "rootPath": "/workspace/scratch/e671c73efcba/boundary-atlas/fixtures/ts-cross-feature-portal",
     "repoName": "ts-cross-feature-portal"
   },
   "summary": {

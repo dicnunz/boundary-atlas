@@ -1,5 +1,7 @@
 # Boundary Atlas
 
+[Open the live demo](https://dicnunz.github.io/demos/boundary-atlas/)
+
 Boundary Atlas is a static import analyzer for TypeScript and JavaScript repositories. It parses real imports with `ts-morph`, builds file, folder, and package graphs, and turns them into findings you can export as JSON, Markdown, or an offline HTML viewer.
 
 ## What It Catches
@@ -21,6 +23,15 @@ Bundled fixtures show the detectors on small example repositories.
 - Sample output index: [`docs/samples/README.md`](docs/samples/README.md)
 - Fixture catalog: [`fixtures/README.md`](fixtures/README.md)
 - Default web demo report: `ts-cross-feature-portal`, preloaded in the viewer with a high-severity finding selected
+
+The viewer supports the full review loop:
+
+- Search module paths or import specifiers in file, folder, and package graphs. Matching import specifiers keep both endpoints visible.
+- Select a module from the graph or the keyboard-accessible path table, follow incoming and outgoing dependencies, and focus its direct neighborhood.
+- Filter the review queue by finding type, severity, or evidence text, then isolate a finding in the graph.
+- Open a local v1 JSON report up to 20 MiB. Invalid JSON, unsupported versions, duplicate IDs, and missing graph references produce field-level errors while the current report remains open.
+
+Report files are read in the browser and are never uploaded. Exported viewers use local assets and an embedded report. The default relative Vite base also supports hosting the viewer in a subdirectory.
 
 ```text
 Boundary Atlas: ts-cross-feature-portal
@@ -82,6 +93,12 @@ Export the offline HTML viewer:
 ```bash
 node packages/cli/dist/index.js analyze ./fixtures/ts-cross-feature-portal \
   --html ./output/ts-cross-feature-portal-html
+```
+
+Serve that directory locally, then open `http://localhost:8080`. All viewer assets and report data are included; no internet connection is needed. A local server is required because browsers restrict JavaScript modules opened directly with `file://`.
+
+```bash
+python3 -m http.server 8080 --directory ./output/ts-cross-feature-portal-html
 ```
 
 Compare two refs for architecture drift:

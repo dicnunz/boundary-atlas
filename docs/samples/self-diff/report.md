@@ -1,7 +1,7 @@
 # Boundary Atlas: boundary-atlas@HEAD
 
-- Generated: 2026-05-10T06:46:25.440Z
-- Root: /Users/nicdunz/Documents/Codex/2026-05-09/goal-chrome-plugin-chrome-openai-bundled-3/repos/boundary-atlas
+- Generated: 2026-09-06T18:55:20.012Z
+- Root: /workspace/scratch/e671c73efcba/boundary-atlas
 - Ref: HEAD
 
 ## Summary

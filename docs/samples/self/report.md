@@ -1,25 +1,25 @@
 # Boundary Atlas: boundary-atlas
 
-- Generated: 2026-05-10T06:46:24.771Z
-- Root: /Users/nicdunz/Documents/Codex/2026-05-09/goal-chrome-plugin-chrome-openai-bundled-3/repos/boundary-atlas
+- Generated: 2026-09-06T18:55:18.726Z
+- Root: /workspace/scratch/e671c73efcba/boundary-atlas
 
 ## Summary
 
-- Files analyzed: 22
+- Files analyzed: 28
 - Folders: 11
 - Packages: 4
-- Internal edges: 33
+- Internal edges: 44
 - Cycles: 0
 - Deep imports: 0
 - Dead exports: 38
 - Boundary violations: 0
 - Cross-feature dependencies: 0
-- Hotspots: 10
+- Hotspots: 12
 
 ## What stands out
 
 - High-severity findings: 0
-- Active detectors: Dead exports (38), Hotspots (10)
+- Active detectors: Dead exports (38), Hotspots (12)
 - First issue to inspect: Unused export basenamePath
 
 ## Findings
@@ -80,19 +80,19 @@
 - Why risky: Unused exports widen the apparent public surface and make the module harder to maintain because callers cannot distinguish real API from stale code.
 - Evidence: packages/core/src/types/report.ts:120 | No internal import or re-export references this export, and it is not part of a public entrypoint surface.
 
-### Unused export BoundaryAtlasGraph
-- Type: dead-export
-- Severity: warn
-- Summary: Export `BoundaryAtlasGraph` in apps/web/src/report-types.ts is not referenced internally.
-- Why risky: Unused exports widen the apparent public surface and make the module harder to maintain because callers cannot distinguish real API from stale code.
-- Evidence: apps/web/src/report-types.ts:32 | No internal import or re-export references this export, and it is not part of a public entrypoint surface.
-
 ### Unused export BoundaryAtlasGraphDrift
 - Type: dead-export
 - Severity: warn
 - Summary: Export `BoundaryAtlasGraphDrift` in packages/core/src/types/report.ts is not referenced internally.
 - Why risky: Unused exports widen the apparent public surface and make the module harder to maintain because callers cannot distinguish real API from stale code.
 - Evidence: packages/core/src/types/report.ts:135 | No internal import or re-export references this export, and it is not part of a public entrypoint surface.
+
+### Unused export BoundaryAtlasGraphEdge
+- Type: dead-export
+- Severity: warn
+- Summary: Export `BoundaryAtlasGraphEdge` in apps/web/src/report-types.ts is not referenced internally.
+- Why risky: Unused exports widen the apparent public surface and make the module harder to maintain because callers cannot distinguish real API from stale code.
+- Evidence: apps/web/src/report-types.ts:23 | No internal import or re-export references this export, and it is not part of a public entrypoint surface.
 
 ### Unused export BoundaryAtlasHotspot
 - Type: dead-export
@@ -290,6 +290,20 @@
 - Why risky: Unused exports widen the apparent public surface and make the module harder to maintain because callers cannot distinguish real API from stale code.
 - Evidence: packages/core/src/graph/workspace.ts:19 | No internal import or re-export references this export, and it is not part of a public entrypoint surface.
 
+### file hotspot: apps/web/src/App.tsx
+- Type: hotspot
+- Severity: warn
+- Summary: apps/web/src/App.tsx has fan-in 2 and fan-out 4.
+- Why risky: High fan-in means many callers depend on this node. High fan-out means this node reaches across many other areas. Either shape concentrates architectural churn.
+- Evidence: apps/web/src/App.tsx
+
+### file hotspot: apps/web/src/report-types.ts
+- Type: hotspot
+- Severity: warn
+- Summary: apps/web/src/report-types.ts has fan-in 6 and fan-out 0.
+- Why risky: High fan-in means many callers depend on this node. High fan-out means this node reaches across many other areas. Either shape concentrates architectural churn.
+- Evidence: apps/web/src/report-types.ts
+
 ### file hotspot: packages/core/src/analyze/analyze-repository.ts
 - Type: hotspot
 - Severity: warn
@@ -363,9 +377,11 @@
 ## Hotspots
 
 - file: packages/core/src/types/report.ts (fan-in 7, fan-out 1)
+- file: apps/web/src/report-types.ts (fan-in 6, fan-out 0)
 - file: packages/core/src/analyze/analyze-repository.ts (fan-in 3, fan-out 6)
 - file: packages/core/src/types/config.ts (fan-in 6, fan-out 0)
 - file: packages/core/src/index.ts (fan-in 0, fan-out 5)
+- file: apps/web/src/App.tsx (fan-in 2, fan-out 4)
 - file: packages/core/src/diff/compare-git-refs.ts (fan-in 2, fan-out 3)
 - file: packages/core/src/graph/workspace.ts (fan-in 3, fan-out 2)
 - file: packages/core/src/rules/findings.ts (fan-in 1, fan-out 3)
